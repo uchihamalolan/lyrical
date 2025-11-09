@@ -29,7 +29,7 @@ export function Navbar() {
 					<input
 						type="text"
 						placeholder="Search"
-						className="input input-bordered w-48 md:w-64 rounded-full"
+						className="input input-bordered w-48 md:w-64 rounded-full focus:outline-none focus:border-primary focus:ring focus:ring-primary"
 						value={query}
 						onChange={(e) => setQuery(e.target.value)}
 					/>
