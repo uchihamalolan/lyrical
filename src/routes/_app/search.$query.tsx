@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import type { SongDetails } from "../../services/lrclib";
+import { SongCard } from "../../components/SongCard";
 import { searchSongs } from "../../utils/lrclib";
 
 export const Route = createFileRoute("/_app/search/$query")({
@@ -35,41 +35,6 @@ function LoadingComponent() {
 				))}
 			</div>
 		</div>
-	);
-}
-
-function Duration({ duration }: { duration: number }) {
-	return (
-		<>
-			{`${Math.floor(duration / 60)}:${String(duration % 60).padStart(2, "0")}`}
-		</>
-	);
-}
-
-function SongCard({ song }: { song: SongDetails }) {
-	const handleClick = () => {
-		// TODO: Add navigation or action for the song
-		console.log("Song clicked:", song);
-	};
-
-	return (
-		<button
-			type="button"
-			onClick={handleClick}
-			className="card bg-base-200 shadow-md p-4 hover:bg-base-300 transition flex flex-col justify-between h-full text-left w-full focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer"
-			aria-label={`${song.trackName} by ${song.artistName} from ${song.albumName}`}
-		>
-			<div>
-				<h3 className="card-title">{song.trackName}</h3>
-				<p className="text-sm text-gray-500">{song.albumName}</p>
-				<p className="card-subtitle">{song.artistName}</p>
-			</div>
-			<div className="flex justify-end mt-2 card-actions">
-				<span className="badge badge-soft">
-					<Duration duration={song.duration} />
-				</span>
-			</div>
-		</button>
 	);
 }
 
