@@ -27,7 +27,7 @@ export interface SongDetails {
  */
 export async function searchSongs(query: string): Promise<SongDetails[]> {
 	const url = new URL(`${API_BASE_URL}/search`);
-	url.searchParams.set("track_name", query.trim());
+	url.searchParams.set("q", query.trim());
 
 	const response = await fetch(url.toString(), {
 		method: "GET",
