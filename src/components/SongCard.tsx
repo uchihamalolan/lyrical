@@ -20,9 +20,15 @@ export function SongCard({ song }: { song: SongDetails }) {
 			aria-label={`${song.trackName} by ${song.artistName} from ${song.albumName}`}
 		>
 			<div>
-				<h3 className="card-title text-base sm:text-lg line-clamp-2">{song.trackName}</h3>
-				<p className="text-xs sm:text-sm text-gray-500 truncate">{song.albumName}</p>
-				<p className="card-subtitle text-sm sm:text-base truncate">{song.artistName}</p>
+				<h3 className="card-title text-base sm:text-lg line-clamp-2">
+					{song.trackName}
+				</h3>
+				<p className="text-xs sm:text-sm text-base-content/50 truncate">
+					{song.albumName}
+				</p>
+				<p className="card-subtitle text-sm sm:text-base truncate">
+					{song.artistName}
+				</p>
 			</div>
 			<div className="flex mt-2 card-actions flex-wrap gap-1">
 				{song.syncedLyrics ? (
