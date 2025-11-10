@@ -36,8 +36,8 @@ function Instrumental() {
 
 function Lyrics({ lyrics }: { lyrics: string }) {
 	return (
-		<div className="bg-base-200 rounded-lg p-8 shadow-lg">
-			<div className="prose prose-lg max-w-none">
+		<div className="bg-base-200 rounded-lg p-4 sm:p-6 md:p-8 shadow-lg">
+			<div className="prose prose-sm sm:prose-base md:prose-lg max-w-none">
 				{lyrics.split("\n").map((line, index) => (
 					<p
 						key={`${index}-${line.substring(0, 20)}`}
@@ -55,20 +55,24 @@ function Lyrics({ lyrics }: { lyrics: string }) {
 
 function SongHeader({ song }: { song: SongDetails }) {
 	return (
-		<div className="mb-8 text-center">
-			<h1 className="text-4xl font-bold mb-2">{song.trackName}</h1>
-			<p className="text-xl text-gray-600 dark:text-gray-400 mb-1">
+		<div className="mb-6 sm:mb-8 text-center px-2">
+			<h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 break-words">
+				{song.trackName}
+			</h1>
+			<p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 mb-1 break-words">
 				{song.artistName}
 			</p>
-			<p className="text-lg text-gray-500 dark:text-gray-500 mb-2">
+			<p className="text-base sm:text-lg text-gray-500 dark:text-gray-500 mb-2 break-words">
 				{song.albumName}
 			</p>
-			<div className="flex items-center justify-center gap-4 text-sm text-gray-500">
-				<span className="badge badge-outline">
+			<div className="flex items-center justify-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-500 flex-wrap">
+				<span className="badge badge-outline text-xs sm:text-sm">
 					<Duration duration={song.duration} />
 				</span>
 				{song.instrumental && (
-					<span className="badge badge-primary">Instrumental</span>
+					<span className="badge badge-primary text-xs sm:text-sm">
+						Instrumental
+					</span>
 				)}
 			</div>
 		</div>
@@ -79,14 +83,14 @@ function RouteComponent() {
 	const song = Route.useLoaderData();
 
 	return (
-		<div className="container mx-auto px-4 py-8 max-w-4xl">
+		<div className="container mx-auto px-4 py-4 sm:py-6 md:py-8 max-w-4xl">
 			{/* Song Header */}
 			<SongHeader song={song} />
 
 			<div className="divider" />
 
 			{/* Lyrics Section */}
-			<div className="mt-8">
+			<div className="mt-4 sm:mt-6 md:mt-8">
 				{song.instrumental ? (
 					<Instrumental />
 				) : song.plainLyrics ? (
