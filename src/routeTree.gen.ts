@@ -11,8 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as AppRouteRouteImport } from './routes/_app/route'
 import { Route as AppIndexRouteImport } from './routes/_app/index'
+import { Route as AppSearchIndexRouteImport } from './routes/_app/search/index'
 import { Route as AppSongsSongIdRouteImport } from './routes/_app/songs.$songId'
-import { Route as AppSearchQueryRouteImport } from './routes/_app/search.$query'
+import { Route as AppSearchQueryRouteImport } from './routes/_app/search/$query'
 
 const AppRouteRoute = AppRouteRouteImport.update({
   id: '/_app',
@@ -21,6 +22,11 @@ const AppRouteRoute = AppRouteRouteImport.update({
 const AppIndexRoute = AppIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppSearchIndexRoute = AppSearchIndexRouteImport.update({
+  id: '/search/',
+  path: '/search/',
   getParentRoute: () => AppRouteRoute,
 } as any)
 const AppSongsSongIdRoute = AppSongsSongIdRouteImport.update({
@@ -38,11 +44,13 @@ export interface FileRoutesByFullPath {
   '/': typeof AppIndexRoute
   '/search/$query': typeof AppSearchQueryRoute
   '/songs/$songId': typeof AppSongsSongIdRoute
+  '/search': typeof AppSearchIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof AppIndexRoute
   '/search/$query': typeof AppSearchQueryRoute
   '/songs/$songId': typeof AppSongsSongIdRoute
+  '/search': typeof AppSearchIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -50,18 +58,20 @@ export interface FileRoutesById {
   '/_app/': typeof AppIndexRoute
   '/_app/search/$query': typeof AppSearchQueryRoute
   '/_app/songs/$songId': typeof AppSongsSongIdRoute
+  '/_app/search/': typeof AppSearchIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/search/$query' | '/songs/$songId'
+  fullPaths: '/' | '/search/$query' | '/songs/$songId' | '/search'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/search/$query' | '/songs/$songId'
+  to: '/' | '/search/$query' | '/songs/$songId' | '/search'
   id:
     | '__root__'
     | '/_app'
     | '/_app/'
     | '/_app/search/$query'
     | '/_app/songs/$songId'
+    | '/_app/search/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -82,6 +92,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof AppIndexRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/_app/search/': {
+      id: '/_app/search/'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof AppSearchIndexRouteImport
       parentRoute: typeof AppRouteRoute
     }
     '/_app/songs/$songId': {
@@ -105,12 +122,14 @@ interface AppRouteRouteChildren {
   AppIndexRoute: typeof AppIndexRoute
   AppSearchQueryRoute: typeof AppSearchQueryRoute
   AppSongsSongIdRoute: typeof AppSongsSongIdRoute
+  AppSearchIndexRoute: typeof AppSearchIndexRoute
 }
 
 const AppRouteRouteChildren: AppRouteRouteChildren = {
   AppIndexRoute: AppIndexRoute,
   AppSearchQueryRoute: AppSearchQueryRoute,
   AppSongsSongIdRoute: AppSongsSongIdRoute,
+  AppSearchIndexRoute: AppSearchIndexRoute,
 }
 
 const AppRouteRouteWithChildren = AppRouteRoute._addFileChildren(

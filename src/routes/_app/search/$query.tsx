@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { SongCard } from "../../components/SongCard";
-import { searchSongs } from "../../utils/lrclib";
+import { SongCard } from "../../../components/SongCard";
+import { searchSongs } from "../../../utils/lrclib";
 
 export const Route = createFileRoute("/_app/search/$query")({
 	loader: async ({ params }) => searchSongs({ data: { query: params.query } }),
@@ -18,7 +18,9 @@ function LoadingComponent() {
 
 	return (
 		<div className="container mx-auto px-4 py-4 sm:py-6">
-			<h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 break-words">Search Results for: "{query}"</h1>
+			<h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 break-words">
+				Search Results for: "{query}"
+			</h1>
 
 			<div className="flex items-center gap-2 mb-4">
 				<span className="loading loading-spinner loading-sm"></span>
@@ -44,7 +46,9 @@ function RouteComponent() {
 
 	return (
 		<div className="container mx-auto px-4 py-4 sm:py-6">
-			<h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 break-words">Search Results for: "{query}"</h1>
+			<h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 break-words">
+				Search Results for: "{query}"
+			</h1>
 
 			<p className="text-sm text-gray-500 mb-4">
 				Found {results.length} result{results.length !== 1 ? "s" : ""}
