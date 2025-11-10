@@ -59,13 +59,13 @@ function RouteComponent() {
 	};
 
 	return (
-		<div className="min-h-screen bg-white">
+		<div className="min-h-screen">
 			<div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12">
 				<div className="max-w-2xl mx-auto">
-					<h1 className="text-3xl sm:text-4xl font-bold text-black mb-2">
+					<h1 className="text-3xl sm:text-4xl font-bold mb-2">
 						Advanced Search
 					</h1>
-					<p className="text-gray-600 mb-8">
+					<p className="text-base-content/70 mb-8">
 						Search for songs by track name, artist, or album. At least one field
 						must have more than 3 characters.
 					</p>
@@ -74,7 +74,7 @@ function RouteComponent() {
 						<div>
 							<label
 								htmlFor={trackNameId}
-								className="block text-sm font-medium text-gray-700 mb-2"
+								className="block text-sm font-medium mb-2"
 							>
 								Track Name
 							</label>
@@ -86,14 +86,14 @@ function RouteComponent() {
 									handleInputChange(setTrackName, e.target.value)
 								}
 								placeholder="Enter track name..."
-								className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent outline-none transition"
+								className="input input-bordered w-full"
 							/>
 						</div>
 
 						<div>
 							<label
 								htmlFor={artistNameId}
-								className="block text-sm font-medium text-gray-700 mb-2"
+								className="block text-sm font-medium mb-2"
 							>
 								Artist Name
 							</label>
@@ -105,14 +105,14 @@ function RouteComponent() {
 									handleInputChange(setArtistName, e.target.value)
 								}
 								placeholder="Enter artist name..."
-								className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent outline-none transition"
+								className="input input-bordered w-full"
 							/>
 						</div>
 
 						<div>
 							<label
 								htmlFor={albumNameId}
-								className="block text-sm font-medium text-gray-700 mb-2"
+								className="block text-sm font-medium mb-2"
 							>
 								Album Name
 							</label>
@@ -124,19 +124,19 @@ function RouteComponent() {
 									handleInputChange(setAlbumName, e.target.value)
 								}
 								placeholder="Enter album name..."
-								className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent outline-none transition"
+								className="input input-bordered w-full"
 							/>
 						</div>
 
 						{error && (
-							<div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+							<div className="alert alert-error">
 								{error}
 							</div>
 						)}
 
 						<button
 							type="submit"
-							className="w-full bg-black text-white py-3 px-6 rounded-lg font-medium hover:bg-gray-800 transition disabled:opacity-50 disabled:cursor-not-allowed"
+							className="btn btn-primary w-full"
 						>
 							Search
 						</button>

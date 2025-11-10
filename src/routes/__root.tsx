@@ -45,7 +45,7 @@ function RootComponent() {
 
 function RootDocument({ children }: { children: React.ReactNode }) {
 	return (
-		<html lang="en">
+		<html lang="en" data-theme="light">
 			<head>
 				<HeadContent />
 			</head>
