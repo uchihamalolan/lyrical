@@ -48,11 +48,11 @@ export function Navbar() {
 					>
 						{theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
 					</button>
-					{!isAdvancedSearchPage && (
+					{/* {!isAdvancedSearchPage && (
 						<Link to="/search" className="btn btn-outline btn-sm">
 							Advanced Search
 						</Link>
-					)}
+					)} */}
 				</div>
 			</div>
 		</div>

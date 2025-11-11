@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Duration } from "../../components/Duration";
-import { getSongQuery } from "../../queries/lrclib";
-import type { SongDetails } from "../../services/lrclib";
+import { Duration } from "../../../components/Duration";
+import { getSongQuery } from "../../../queries/lrclib";
+import type { SongDetails } from "../../../services/lrclib";
 
 export const Route = createFileRoute("/_app/songs/$songId")({
 	loader: ({ context, params }) => {
@@ -37,7 +37,7 @@ function Instrumental() {
 function Lyrics({ lyrics }: { lyrics: string }) {
 	return (
 		<div className="bg-base-200 rounded-lg p-4 sm:p-6 md:p-8 shadow-lg">
-			<div className="prose prose-sm sm:prose-base md:prose-lg max-w-none">
+			<article className="prose prose-xl prose-stone max-w-none">
 				{lyrics.split("\n").map((line, index) => (
 					<p
 						key={`${index}-${line.substring(0, 20)}`}
@@ -48,7 +48,7 @@ function Lyrics({ lyrics }: { lyrics: string }) {
 						{line.trim() === "" ? "\u00A0" : line}
 					</p>
 				))}
-			</div>
+			</article>
 		</div>
 	);
 }

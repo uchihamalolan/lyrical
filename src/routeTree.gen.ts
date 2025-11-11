@@ -12,7 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AppRouteRouteImport } from './routes/_app/route'
 import { Route as AppIndexRouteImport } from './routes/_app/index'
 import { Route as AppSearchIndexRouteImport } from './routes/_app/search/index'
-import { Route as AppSongsSongIdRouteImport } from './routes/_app/songs.$songId'
+import { Route as AppSongsSongIdRouteImport } from './routes/_app/songs/$songId'
 import { Route as AppSearchQueryRouteImport } from './routes/_app/search/$query'
 
 const AppRouteRoute = AppRouteRouteImport.update({
