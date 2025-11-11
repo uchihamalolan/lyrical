@@ -37,12 +37,14 @@ function Instrumental() {
 function Lyrics({ lyrics }: { lyrics: string }) {
 	return (
 		<div className="bg-base-200 rounded-lg p-4 sm:p-6 md:p-8 shadow-lg">
-			<article className="prose prose-xl prose-stone max-w-none">
+			<article className="font-serif tracking-wide ">
 				{lyrics.split("\n").map((line, index) => (
 					<p
 						key={`${index}-${line.substring(0, 20)}`}
 						className={`${
-							line.trim() === "" ? "h-4" : "text-base-content leading-relaxed"
+							line.trim() === ""
+								? "h-8"
+								: "text-base-content text-lg sm:text-xl leading-8 font-light"
 						}`}
 					>
 						{line.trim() === "" ? "\u00A0" : line}

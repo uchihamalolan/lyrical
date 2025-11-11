@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @plugin "daisyui";
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap");
 
 @theme {
   --daisyui-themes: light, dark;
+  --font-serif: "Merriweather", serif;
 }
