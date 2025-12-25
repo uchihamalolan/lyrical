@@ -50,9 +50,6 @@ importers:
       tailwindcss:
         specifier: ^4.0.6
         version: 4.1.17
-      transliteration:
-        specifier: ^2.6.0
-        version: 2.6.0
       vite-tsconfig-paths:
         specifier: ^5.1.4
         version: 5.1.4(typescript@5.9.3)(vite@7.2.2(@types/node@22.19.0)(jiti@2.6.1)(lightningcss@1.30.2)(tsx@4.20.6)(yaml@2.8.1))
@@ -3688,11 +3685,6 @@ packages:
   tr46@6.0.0:
     resolution: {integrity: sha512-bLVMLPtstlZ4iMQHpFHTR7GAGj2jxi8Dg0s2h2MafAE4uSWF98FC/3MomU51iQAMf8/qDUbKWf5GxuvvVcXEhw==, tarball: https://packages.atlassian.com/api/npm/npm-remote/tr46/-/tr46-6.0.0.tgz}
     engines: {node: '>=20'}
-
-  transliteration@2.6.0:
-    resolution: {integrity: sha512-T6frfMj7N5xNK0l+duIzIWKxkc9ewG72uv7NeOs4dIoysqTnYpwxeVEE5qYdKKmy7hby55ah0wNUoMaLsB2Zjw==}
-    engines: {node: '>=20.0.0'}
-    hasBin: true
 
   triple-beam@1.4.1:
     resolution: {integrity: sha512-aZbgViZrg1QNcG+LULa7nhZpJTZSLm/mXnHXnbAbjmN5aSa0y7V+wvv6+4WaBtpISJzThKy+PIPxc1Nq1EJ9mg==}
@@ -7951,8 +7943,6 @@ snapshots:
   tr46@6.0.0:
     dependencies:
       punycode: 2.3.1
-
-  transliteration@2.6.0: {}
 
   triple-beam@1.4.1: {}
 
