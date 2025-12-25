@@ -1,5 +1,5 @@
-// src/config/env.ts
 import { z } from 'zod'
+import { createServerOnlyFn } from '@tanstack/react-start'
 
 const envSchema = z.object({
   GEMINI_API_KEY: z.string().min(1),
@@ -7,4 +7,4 @@ const envSchema = z.object({
 })
 
 // Validate server environment
-export const serverEnv = envSchema.parse(process.env)
+export const serverEnv = createServerOnlyFn(() => envSchema.parse(process.env)) 

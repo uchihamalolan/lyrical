@@ -8,7 +8,7 @@ import { serverEnv } from '@/config/env';
 export async function transliterate(text: string): Promise<string> {
 
     // API key is now only on the server
-    const GEMINI_API_KEY = serverEnv.GEMINI_API_KEY;
+    const GEMINI_API_KEY = serverEnv().GEMINI_API_KEY;
 
     if (!GEMINI_API_KEY) {
       throw new Error("GEMINI_API_KEY is not set on the server");
