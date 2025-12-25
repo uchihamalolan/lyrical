@@ -6,6 +6,8 @@ import {
 	Scripts,
 } from "@tanstack/react-router";
 import appCss from "../styles.css?url";
+import { DefaultError } from "../components/DefaultError";
+import { NotFound } from "../components/NotFound";
 
 export const Route = createRootRouteWithContext<{
 	queryClient: QueryClient;
@@ -32,7 +34,8 @@ export const Route = createRootRouteWithContext<{
 	}),
 
 	component: RootComponent,
-	notFoundComponent: () => <div>Not Found</div>,
+	notFoundComponent: NotFound,
+	errorComponent: DefaultError,
 });
 
 function RootComponent() {

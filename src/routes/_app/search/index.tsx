@@ -5,6 +5,8 @@ export const Route = createFileRoute("/_app/search/")({
 	component: RouteComponent,
 });
 
+const MIN_CHARS = 2;
+
 function RouteComponent() {
 	const navigate = useNavigate();
 	const trackNameId = useId();
@@ -16,12 +18,14 @@ function RouteComponent() {
 	const [error, setError] = useState("");
 
 	const validateForm = (): boolean => {
-		const trackValid = trackName.trim().length > 3;
-		const artistValid = artistName.trim().length > 3;
-		const albumValid = albumName.trim().length > 3;
+		const trackValid = trackName.trim().length >= MIN_CHARS;
+		const artistValid = artistName.trim().length >= MIN_CHARS;
+		const albumValid = albumName.trim().length >= MIN_CHARS;
 
 		if (!trackValid && !artistValid && !albumValid) {
-			setError("At least one field must have more than 3 characters");
+			setError(
+				`At least one field must have ${MIN_CHARS} or more characters`,
+			);
 			return false;
 		}
 
@@ -37,8 +41,11 @@ function RouteComponent() {
 		}
 
 		// Combine the search terms into a single query
+		// We include all non-empty strings, even if they are short,
+		// as long as the global validation passed (at least one "good" term exists)
 		const searchTerms = [trackName, artistName, albumName]
-			.filter((term) => term.trim().length > 3)
+			.map((term) => term.trim())
+			.filter((term) => term.length > 0)
 			.join(" ");
 
 		navigate({
@@ -67,7 +74,7 @@ function RouteComponent() {
 					</h1>
 					<p className="text-base-content/70 mb-8">
 						Search for songs by track name, artist, or album. At least one field
-						must have more than 3 characters.
+						must have {MIN_CHARS} or more characters.
 					</p>
 
 					<form onSubmit={handleSubmit} className="space-y-6">
@@ -129,15 +136,16 @@ function RouteComponent() {
 						</div>
 
 						{error && (
-							<div className="alert alert-error">
+							<div
+								className="alert alert-error"
+								role="alert"
+								aria-live="polite"
+							>
 								{error}
 							</div>
 						)}
 
-						<button
-							type="submit"
-							className="btn btn-primary w-full"
-						>
+						<button type="submit" className="btn btn-primary w-full">
 							Search
 						</button>
 					</form>
