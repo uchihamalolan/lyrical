@@ -34,7 +34,7 @@ export function SongCard({ song }: { song: SongDetails }) {
 				{song.syncedLyrics ? (
 					<span className="badge badge-primary badge-soft text-xs">Synced</span>
 				) : (
-					<span className="badge badge-neutral badge-soft text-xs">Plain</span>
+					<span className="badge badge-secondary badge-soft text-xs">Plain</span>
 				)}
 				<span className="badge badge-soft ms-auto text-xs">
 					<Duration duration={song.duration} />
