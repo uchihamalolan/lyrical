@@ -14,6 +14,7 @@ export function DefaultError({ error }: { error: Error }) {
 					</p>
 					<div className="flex gap-4 justify-center">
 						<button
+							type="button"
 							onClick={() => {
 								router.invalidate();
 							}}

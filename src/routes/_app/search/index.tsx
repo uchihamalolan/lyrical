@@ -1,5 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useId, useState } from "react";
+import { X } from "lucide-react";
+import { useId, useRef, useState } from "react";
 
 export const Route = createFileRoute("/_app/search/")({
 	component: RouteComponent,
@@ -7,11 +8,57 @@ export const Route = createFileRoute("/_app/search/")({
 
 const MIN_CHARS = 2;
 
-function RouteComponent() {
+export function ClearableInput({
+	label,
+	value,
+	onChange,
+	placeholder,
+}: {
+	label: string;
+	value: string;
+	onChange: (value: string) => void;
+	placeholder: string;
+}) {
+	const id = useId();
+	const inputRef = useRef<HTMLInputElement>(null);
+
+	const handleClear = () => {
+		onChange("");
+		inputRef.current?.focus();
+	};
+
+	return (
+		<div>
+			<label htmlFor={id} className="block text-sm font-medium mb-2">
+				{label}
+			</label>
+			<div className="relative">
+				<input
+					id={id}
+					ref={inputRef}
+					type="text"
+					value={value}
+					onChange={(e) => onChange(e.target.value)}
+					placeholder={placeholder}
+					className="input input-bordered w-full pr-10"
+				/>
+				{value.length > 0 && (
+					<button
+						type="button"
+						onClick={handleClear}
+						className="absolute right-2 top-1/2 -translate-y-1/2 text-base-content/50 hover:text-base-content p-1 rounded-full focus:outline-none focus:ring-2 focus:ring-primary z-10"
+						aria-label={`Clear ${label}`}
+					>
+						<X size={16} />
+					</button>
+				)}
+			</div>
+		</div>
+	);
+}
+
+export function RouteComponent() {
 	const navigate = useNavigate();
-	const trackNameId = useId();
-	const artistNameId = useId();
-	const albumNameId = useId();
 	const [trackName, setTrackName] = useState("");
 	const [artistName, setArtistName] = useState("");
 	const [albumName, setAlbumName] = useState("");
@@ -23,9 +70,7 @@ function RouteComponent() {
 		const albumValid = albumName.trim().length >= MIN_CHARS;
 
 		if (!trackValid && !artistValid && !albumValid) {
-			setError(
-				`At least one field must have ${MIN_CHARS} or more characters`,
-			);
+			setError(`At least one field must have ${MIN_CHARS} or more characters`);
 			return false;
 		}
 
@@ -78,62 +123,26 @@ function RouteComponent() {
 					</p>
 
 					<form onSubmit={handleSubmit} className="space-y-6">
-						<div>
-							<label
-								htmlFor={trackNameId}
-								className="block text-sm font-medium mb-2"
-							>
-								Track Name
-							</label>
-							<input
-								id={trackNameId}
-								type="text"
-								value={trackName}
-								onChange={(e) =>
-									handleInputChange(setTrackName, e.target.value)
-								}
-								placeholder="Enter track name..."
-								className="input input-bordered w-full"
-							/>
-						</div>
+						<ClearableInput
+							label="Track Name"
+							value={trackName}
+							onChange={(val) => handleInputChange(setTrackName, val)}
+							placeholder="Enter track name..."
+						/>
 
-						<div>
-							<label
-								htmlFor={artistNameId}
-								className="block text-sm font-medium mb-2"
-							>
-								Artist Name
-							</label>
-							<input
-								id={artistNameId}
-								type="text"
-								value={artistName}
-								onChange={(e) =>
-									handleInputChange(setArtistName, e.target.value)
-								}
-								placeholder="Enter artist name..."
-								className="input input-bordered w-full"
-							/>
-						</div>
+						<ClearableInput
+							label="Artist Name"
+							value={artistName}
+							onChange={(val) => handleInputChange(setArtistName, val)}
+							placeholder="Enter artist name..."
+						/>
 
-						<div>
-							<label
-								htmlFor={albumNameId}
-								className="block text-sm font-medium mb-2"
-							>
-								Album Name
-							</label>
-							<input
-								id={albumNameId}
-								type="text"
-								value={albumName}
-								onChange={(e) =>
-									handleInputChange(setAlbumName, e.target.value)
-								}
-								placeholder="Enter album name..."
-								className="input input-bordered w-full"
-							/>
-						</div>
+						<ClearableInput
+							label="Album Name"
+							value={albumName}
+							onChange={(val) => handleInputChange(setAlbumName, val)}
+							placeholder="Enter album name..."
+						/>
 
 						{error && (
 							<div

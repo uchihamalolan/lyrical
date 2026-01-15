@@ -1,9 +1,9 @@
-import { z } from 'zod'
-import { createServerOnlyFn } from '@tanstack/react-start'
+import { z } from "zod";
+import { createServerOnlyFn } from "@tanstack/react-start";
 
 const envSchema = z.object({
-  GEMINI_API_KEY: z.string().min(1),
-})
+	GEMINI_API_KEY: z.string().min(1),
+});
 
 // Validate server environment
-export const serverEnv = createServerOnlyFn(() => envSchema.parse(process.env)) 
+export const serverEnv = createServerOnlyFn(() => envSchema.parse(process.env));

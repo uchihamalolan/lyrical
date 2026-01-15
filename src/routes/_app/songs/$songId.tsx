@@ -29,9 +29,7 @@ function Instrumental() {
 	return (
 		<div className="text-center py-12">
 			<span className="block text-6xl mb-4">🎵</span>
-			<p className="text-xl text-gray-400/60">
-				This is an instrumental track
-			</p>
+			<p className="text-xl text-gray-400/60">This is an instrumental track</p>
 		</div>
 	);
 }
@@ -53,7 +51,7 @@ function SongHeader({ song }: { song: SongDetails }) {
 					</p>
 				</div>
 			</div>
-			
+
 			<div className="flex items-center gap-3 shrink-0">
 				<span className="badge badge-md badge-ghost font-semibold border-base-content/10 py-3">
 					<Duration duration={song.duration} />
