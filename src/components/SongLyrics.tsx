@@ -1,5 +1,5 @@
 import { useServerFn } from "@tanstack/react-start";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 import { transliterateLyrics } from "@/utils/transliteration";
 import { isMostlyLatin } from "@/services/transliteration";
@@ -40,7 +40,7 @@ export function Lyrics({ lyrics }: { lyrics: string }) {
 	const [transliteratedText, setTransliteratedText] = useState<string | null>(null);
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState<string | null>(null);
-	const showTransliterate = !isMostlyLatin(lyrics);
+	const showTransliterate = useMemo(() => !isMostlyLatin(lyrics), [lyrics]);
 
 	const getTransliteratedLyrics = useServerFn(transliterateLyrics);
 
